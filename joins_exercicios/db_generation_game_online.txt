@@ -79,20 +79,29 @@ VALUES
 ('Monk',6000,1900,'Magia',7),
 ('Alto-Rei',5000,3500,'Força',8);
 
-SELECT db_generation_game_online.tb_personagem.ataque, db_generation_game_online.tb_classe
-FROM db_generation_game_online.tb_personagem where ataque >2000
-INNER JOIN db_generation_game_online.tb_personagem.id_personagem = db_generation_game_online.tb_classe.id_classe;
+SELECT * FROM db_generation_game_online.tb_personagem;
+SELECT * FROM db_generation_game_online.tb_personagem WHERE ataque >2000;
 
-SELECT db_generation_game_online.tb_personagem.defesa, db_generation_game_online.tb_personagem.nome
-WHERE db_generation_game_online.tb_personagem BETWEEN defesa 1000 AND 2000;
-ON db_generation_game_online.tb_classe = db_generation_game_online.tb_personagem
-WHERE db_generation_game_online.tb_personagem.nome LIKE '%c';
+SELECT db_generation_game_online.tb_personagem.defesa
+FROM  db_generation_game_online.tb_personagem
+WHERE db_generation_game_online.tb_personagem.defesa BETWEEN 1000 AND 2000;
+
+SELECT  db_generation_game_online.tb_personagem.nome
+FROM db_generation_game_online.tb_personagem 
+WHERE db_generation_game_online.tb_personagem.nome LIKE '%c%';
+
+SELECT db_generation_game_online.tb_classe.id_classe, db_generation_game_online.tb_classe.categoria, db_generation_game_online.tb_classe.jogo
+FROM db_generation_game_online.tb_classe
+INNER JOIN db_generation_game_online.tb_personagem
+ON db_generation_game_online.tb_classe.id_classe=db_generation_game_online.tb_personagem.id_personagem
 
 - Retornando personagem de uma classe específica
-
-SELECT db_generation_game_online.tb_personagem,db_generation_game_online.tb_classe.categoria
-SELECT db_varejoboaz.tb_produto.produto, db_varejoboaz.tb_venda.nome_cliente
+SELECT db_generation_game_online.tb_classe.categoria, db_generation_game_online.tb_personagem.nome
 FROM db_generation_game_online.tb_classe
-RIGHT JOIN db_generation_game_online.tb_classe
-ON db_generation_game_online.tb_classe.id_classe = db_generation_game_online.tb_classe.id_personagem
-WHERE db_generation_game_online.tb_classe IN ('Monge', 'Fada');
+RIGHT JOIN db_generation_game_online.tb_personagem
+ON db_generation_game_online.tb_classe.id_classe = db_generation_game_online.tb_personagem.id_personagem
+WHERE db_generation_game_online.tb_classe.categoria in ('Fada');
+
+
+
+
