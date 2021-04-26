@@ -1,0 +1,48 @@
+USE db_construindo_a_nossa_vida;
+INSERT INTO db_construindo_a_nossa_vida.tb_categoria (categoria,entrega_domiciliar)
+VALUES
+('Material Hidráulico', 0),
+('Pisos e Revestimentos',1),
+('Cimento', 1),
+('Tijolos', 1),
+('Argamassas', 0);
+
+INSERT INTO db_construindo_a_nossa_vida.tb_produto (nome,preco,pagamento,marca,fk_categoria)
+VALUES
+(' Torneira',120,'Dinheiro','FAME',1),
+('Porcelanato',28,'Cartão', 'Portinari',2),
+('Portland Comum',26,'Boleto','VOTORAN',3),
+('Cerâmico',0.99,'Dinheiro','Nova União',4),
+('Concreto',3,'Cartão','MULTIBLOCO',5),
+('Rejuntamento',7,'Dinheiro','Votomassa',6),
+('Laminado',85,'Boleto','Durafloor',7),
+('Bacia Sanitária',360,'Cartão','Celite',8);
+
+SELECT * FROM db_construindo_a_nossa_vida.tb_produto ;
+SELECT * FROM db_construindo_a_nossa_vida.tb_produto  WHERE preco >50;
+
+SELECT db_construindo_a_nossa_vida.tb_produto.preco, db_construindo_a_nossa_vida.tb_produto.nome ,db_construindo_a_nossa_vida.tb_produto.marca
+FROM  db_construindo_a_nossa_vida.tb_produto
+WHERE db_construindo_a_nossa_vida.tb_produto.preco BETWEEN 3 AND 60;
+
+
+SELECT db_construindo_a_nossa_vida.tb_produto.preco, db_construindo_a_nossa_vida.tb_produto.nome ,db_construindo_a_nossa_vida.tb_produto.marca
+FROM db_construindo_a_nossa_vida.tb_produto
+WHERE db_construindo_a_nossa_vida.tb_produto.nome LIKE 'c%';
+
+SELECT db_construindo_a_nossa_vida.tb_categoria.id_categoria, db_construindo_a_nossa_vida.tb_categoria.entrega_domiciliar, db_construindo_a_nossa_vida.tb_categoria.categoria
+FROM db_construindo_a_nossa_vida.tb_categoria
+INNER JOIN db_construindo_a_nossa_vida.tb_produto
+ON db_construindo_a_nossa_vida.tb_categoria.id_categoria=db_construindo_a_nossa_vida.tb_produto.id_produto;
+
+
+- Retornando produto de uma categoria específica
+
+SELECT db_construindo_a_nossa_vida.tb_categoria.categoria,db_construindo_a_nossa_vida.tb_produto.nome
+FROM db_construindo_a_nossa_vida.tb_categoria
+LEFT JOIN db_construindo_a_nossa_vida.tb_produto
+ON db_construindo_a_nossa_vida.tb_categoria.id_categoria = db_construindo_a_nossa_vida.tb_produto.id_produto
+WHERE db_construindo_a_nossa_vida.tb_categoria.categoria in ('Material Hidráulico');
+
+
+
